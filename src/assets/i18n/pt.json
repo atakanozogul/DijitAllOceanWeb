@@ -15,5 +15,7 @@
     "total_income": "Renda total",
     "certificates": "Certificados",
     "actions": "Ações",
-    "view_certificates": "Ver certificados"
+    "view_certificates": "Ver certificados",
+    "issue_date": "Data de emissão",
+    "expiry_date": "Data de validade"
 }

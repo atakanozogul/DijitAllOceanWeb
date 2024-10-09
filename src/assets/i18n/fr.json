@@ -15,5 +15,7 @@
     "total_income": "Revenu total",
     "certificates": "Certificats",
     "actions": "Actions",
-    "view_certificates": "Voir les certificats"
+    "view_certificates": "Voir les certificats",
+    "issue_date": "Date de délivrance",
+    "expiry_date": "Date d'expiration"
 }

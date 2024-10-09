@@ -1,0 +1,14 @@
+<!-- crew-certificates.component.html -->
+<h1 mat-dialog-title>{{ 'certificates' | translate }}</h1>
+<div mat-dialog-content>
+  <ul>
+    <li *ngFor="let certificate of data.certificates">
+      <strong>{{ certificate.name }}</strong> - {{ certificate.desc }}<br>
+      {{ 'issue_date' | translate }}: {{ certificate.issueDate | date }}<br>
+      {{ 'expiry_date' | translate }}: {{ certificate.expiryDate | date }}
+    </li>
+  </ul>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>{{ 'close' | translate }}</button>
+</div>

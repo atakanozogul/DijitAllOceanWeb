@@ -129,6 +129,10 @@ export class DataService {
     return this.certificates;
   }
 
+  getCertificateById(id: number): Certificate | undefined {
+    return this.certificates.find(cert => cert.id === id);
+  }
+
   // Yeni sertifika ekle
   addNewCertificate(certificate: Certificate): void {
     this.certificates.push(certificate);

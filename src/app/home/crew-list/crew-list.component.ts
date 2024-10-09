@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table'; // MatTableDataSource'u içe aktarın
+import { MatTableDataSource } from '@angular/material/table';
 import { DataService } from '../../services/data.service';
 import { Crew } from '../../models/crew.model';
 import { Certificate } from '../../models/certificate.model';
+import { CrewCertificateComponent } from './crew-certificate/crew-certificate.component';
+
 
 @Component({
   selector: 'app-crew-list',
@@ -32,8 +34,20 @@ export class CrewListComponent implements OnInit {
     this.dataSource.data = this.crews;
   }
 
-  openCertificatesDialog(certificates: Certificate[]): void {
-    // Sertifikalar modal açma işlemi
+  openCertificatesDialog(certificates: any): void {
+    const detailedCertificates = certificates.map((cert: { certificateId: number; issueDate: any; expiryDate: any; }) => {
+      const certificateDetails = this.dataService.getCertificateById(cert.certificateId);
+      return {
+        ...certificateDetails,
+        issueDate: cert.issueDate,
+        expiryDate: cert.expiryDate
+      };
+    });
+
+    this.dialog.open(CrewCertificateComponent, {
+      width: '400px',
+      data: { certificates: detailedCertificates }
+    });
   }
 
   getTotalIncomeByCurrency(currency: string): number {

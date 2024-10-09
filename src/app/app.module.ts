@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { CrewListComponent } from './home/crew-list/crew-list.component';
 import { DataService } from './services/data.service';
+import { CrewCertificateComponent } from './home/crew-list/crew-certificate/crew-certificate.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,7 +32,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HomeComponent,
     NavbarComponent,
     SidebarComponent,
-    CrewListComponent
+    CrewListComponent,
+    CrewCertificateComponent
   ],
   imports: [
     BrowserModule,

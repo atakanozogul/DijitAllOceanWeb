@@ -15,5 +15,7 @@
     "total_income": "Total income",
     "certificates": "Certificates",
     "actions": "Actions",
-    "view_certificates": "View certificates"
+    "view_certificates": "View certificates",
+    "issue_date": "Issue date",
+    "expiry_date": "Expiry date"
 }

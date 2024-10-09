@@ -4,5 +4,16 @@
     "language": "Language",
     "pt": "Portuguese",
     "fr": "French",
-    "en": "English"
+    "en": "English",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "nationality": "Nationality",
+    "title": "Title",
+    "days_on_board": "Days on board",
+    "daily_rate": "Daily rate",
+    "currency": "Currency",
+    "total_income": "Total income",
+    "certificates": "Certificates",
+    "actions": "Actions",
+    "view_certificates": "View certificates"
 }

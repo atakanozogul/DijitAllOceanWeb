@@ -4,5 +4,16 @@
     "language": "Langue",
     "pt": "Portugais",
     "fr": "Français",
-    "en": "Anglais"
+    "en": "Anglais",
+    "first_name": "Prénom",
+    "last_name": "Nom de famille",
+    "nationality": "Nationalité",
+    "title": "Titre",
+    "days_on_board": "Jours à bord",
+    "daily_rate": "Taux journalier",
+    "currency": "Devise",
+    "total_income": "Revenu total",
+    "certificates": "Certificats",
+    "actions": "Actions",
+    "view_certificates": "Voir les certificats"
 }

@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+    margin: 20px 0;
+  }
+  
+  th.mat-header-cell {
+    background-color: #f5f5f5;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  button.mat-icon-button.edit-button {
+    color: #ffeb3b;
+  }
+  
+  button.mat-icon-button.edit-button:hover {
+    background-color: rgba(255, 235, 59, 0.1);
+  }
+  
+  button.mat-icon-button.delete-button {
+    color: #f44336;
+  }
+  
+  button.mat-icon-button.delete-button:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+  }
+  
+  button.mat-button.certificates-button {
+    color: #2196f3;
+  }
+  
+  button.mat-button.certificates-button:hover {
+    background-color: rgba(33, 150, 243, 0.1);
+  }
+  
+  .total-income {
+    margin-top: 20px;
+    font-weight: bold;
+  }

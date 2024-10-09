@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <span>DigitAllOcean</span>
+    <span class="spacer"></span>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item (click)="changeLanguage('en')">{{ 'en' | translate }}</button>
+      <button mat-menu-item (click)="changeLanguage('fr')">{{ 'fr' | translate }}</button>
+      <button mat-menu-item (click)="changeLanguage('pt')">{{ 'pt' | translate }}</button>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>language</mat-icon>
+    </button>
+</mat-toolbar>

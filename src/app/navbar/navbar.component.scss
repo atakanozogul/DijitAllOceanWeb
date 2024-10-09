@@ -1,0 +1,25 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  mat-toolbar {
+    background-color: #1c2833;
+  }
+  
+  .mat-menu-panel {
+    background-color: #1c2833;
+    border: none;
+  }
+  
+  .mat-menu-item {
+    color: #ecf0f1;
+  }
+  
+  .mat-menu-item:hover {
+    background-color: #34495e;
+    color: #1abc9c;
+  }
+  
+  button.mat-icon-button:hover mat-icon {
+    color: #1abc9c;
+  }

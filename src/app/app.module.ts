@@ -21,6 +21,11 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { CrewListComponent } from './home/crew-list/crew-list.component';
 import { DataService } from './services/data.service';
 import { CrewCertificateComponent } from './home/crew-list/crew-certificate/crew-certificate.component';
+import { CertificatesComponent } from './home/certificates/certificates.component';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -33,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     NavbarComponent,
     SidebarComponent,
     CrewListComponent,
-    CrewCertificateComponent
+    CrewCertificateComponent,
+    CertificatesComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatTableModule,
     MatButtonModule,
     MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

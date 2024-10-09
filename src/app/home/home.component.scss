@@ -1,16 +1,16 @@
 :host {
     display: block;
-    height: 100vh;
+    min-height: 100vh; /* min-height kullanarak içeriğin tam ekran olmasını sağlıyoruz */
     background-image: url('/assets/background.jpg');
     background-size: cover;
     background-position: center;
-}
-
-.home-content {
+  }
+  
+  .home-content {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    min-height: 100%; /* min-height kullanarak içeriğin tam ekran olmasını sağlıyoruz */
     color: white;
     text-align: center;
   }

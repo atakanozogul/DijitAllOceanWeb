@@ -1,0 +1,25 @@
+<!-- certificates.component.html -->
+<div class="container">
+    <h1 mat-title>Certificates</h1>
+    <mat-list>
+      <mat-list-item *ngFor="let certificate of certificates">
+        {{ certificate.name }} - {{ certificate.desc }}
+        <button mat-icon-button color="warn" (click)="deleteCertificate(certificate.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+    
+    <div class="add-certificate-form">
+      <h2 mat-subheader>Add New Certificate</h2>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="newCertificate.name" placeholder="Name">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput [(ngModel)]="newCertificate.desc" placeholder="Description">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addCertificate()">Add</button>
+    </div>
+  </div>

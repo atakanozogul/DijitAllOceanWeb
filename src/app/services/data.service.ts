@@ -86,7 +86,7 @@ export class DataService {
   private certificates: Certificate[] = [
     { id: 1, name: 'Captain License', desc: 'License for captains' },
     { id: 2, name: 'First Aid', desc: 'First aid certification' },
-    // Diğer örnek sertifikalar
+    { id: 3, name: 'Crew License', desc: 'Crew certification' },
   ];
 
   constructor() { }
@@ -134,19 +134,14 @@ export class DataService {
   }
 
   // Yeni sertifika ekle
-  addNewCertificate(certificate: Certificate): void {
-    this.certificates.push(certificate);
+  addNewCertificate(certificate: { name: string, desc: string }) {
+    const newCertificate = {
+      id: this.certificates.length + 1,
+      ...certificate
+    };
+    this.certificates.push(newCertificate);
   }
 
-  // Sertifika güncelle
-  updateCertificate(updatedCertificate: Certificate): void {
-    const index = this.certificates.findIndex(cert => cert.id === updatedCertificate.id);
-    if (index !== -1) {
-      this.certificates[index] = updatedCertificate;
-    }
-  }
-
-  // Sertifika sil
   deleteCertificate(id: number): void {
     this.certificates = this.certificates.filter(cert => cert.id !== id);
   }

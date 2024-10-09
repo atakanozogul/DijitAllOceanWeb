@@ -1,0 +1,40 @@
+/* certificates.component.scss */
+.container {
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  mat-list {
+    margin-bottom: 16px;
+  }
+  
+  mat-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    overflow: visible;
+    background-color: white;
+    border-radius: 10px;
+    margin: 5px;
+  }
+  
+  .certificate-info {
+    flex-grow: 1;
+    padding-right: 16px;
+  }
+  
+  .add-certificate-form {
+    margin-top: 16px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  button[mat-raised-button] {
+    display: block;
+    width: 100%;
+  }

@@ -1,4 +1,4 @@
-.example-container {
+.container {
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,11 +10,11 @@
   }
   
   app-sidebar {
-    width: 240px;
+    width: 17%;
     background: #333;
     color: white;
   }
   
   .content {
-    flex: 1;
+    flex: 83%;
   }

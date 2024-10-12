@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrewCertificateComponent } from './crew-certificate.component';
+import { CrewCertificateComponent } from './crew-certificate-modal.component';
 
 describe('CrewCertificateComponent', () => {
   let component: CrewCertificateComponent;

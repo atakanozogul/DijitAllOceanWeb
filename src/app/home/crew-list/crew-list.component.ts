@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataService } from '../../services/data.service';
+import { CrewDataService } from '../../services/crew-data.service';
+import { CertificateDataService } from 'src/app/services/certificate-data.service';
 import { Crew } from '../../models/crew.model';
 import { Certificate } from '../../models/certificate.model';
-import { CrewCertificateComponent } from './crew-certificate/crew-certificate.component';
+import { CrewCertificateComponent } from './crew-certificate-modal/crew-certificate-modal.component';
 
 
 @Component({
@@ -17,10 +18,13 @@ export class CrewListComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'nationality', 'title', 'daysOnBoard', 'dailyRate', 'currency', 'totalIncome', 'certificates', 'actions'];
   dataSource = new MatTableDataSource<Crew>();
 
-  constructor(private dataService: DataService, public dialog: MatDialog) {}
+  constructor(
+    private crewDataService: CrewDataService, 
+    private certificateDataService: CertificateDataService, 
+    public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.crews = this.dataService.getCrews();
+    this.crews = this.crewDataService.getCrews();
     this.dataSource.data = this.crews;
   }
 
@@ -29,14 +33,14 @@ export class CrewListComponent implements OnInit {
   }
 
   deleteCrew(id: number): void {
-    this.dataService.deleteCrew(id);
-    this.crews = this.dataService.getCrews();
+    this.crewDataService.deleteCrew(id);
+    this.crews = this.crewDataService.getCrews();
     this.dataSource.data = this.crews;
   }
 
   openCertificatesDialog(certificates: any): void {
     const detailedCertificates = certificates.map((cert: { certificateId: number; issueDate: any; expiryDate: any; }) => {
-      const certificateDetails = this.dataService.getCertificateById(cert.certificateId);
+      const certificateDetails = this.certificateDataService.getCertificateById(cert.certificateId);
       return {
         ...certificateDetails,
         issueDate: cert.issueDate,

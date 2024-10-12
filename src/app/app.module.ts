@@ -19,8 +19,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { CrewListComponent } from './home/crew-list/crew-list.component';
-import { DataService } from './services/data.service';
-import { CrewCertificateComponent } from './home/crew-list/crew-certificate/crew-certificate.component';
+import { CrewDataService } from './services/crew-data.service';
+import { CertificateDataService } from './services/certificate-data.service';
+import { CrewCertificateComponent } from './home/crew-list/crew-certificate-modal/crew-certificate-modal.component';
 import { CertificatesComponent } from './home/certificates/certificates.component';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -66,7 +67,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [DataService,MatDialog],
+  providers: [CrewDataService,CertificateDataService,MatDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

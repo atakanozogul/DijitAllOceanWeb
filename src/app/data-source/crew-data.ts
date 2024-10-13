@@ -11,6 +11,7 @@ export const crews: Crew[] = [
     dailyRate: 500,
     currency: 'USD',
     totalIncome: 50000,
+    discount: 0,
     certificates: [
       { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "1" }
     ]
@@ -25,6 +26,7 @@ export const crews: Crew[] = [
     dailyRate: 400,
     currency: 'GBP',
     totalIncome: 32000,
+    discount: 0,
     certificates: [
       { certificateId: 2, issueDate: '2020-05-01', expiryDate: '2022-05-01', crewId: "2" }
     ]
@@ -39,6 +41,7 @@ export const crews: Crew[] = [
     dailyRate: 150,
     currency: 'USD',
     totalIncome: 9000,
+    discount: 0,
     certificates: [
       { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "3" },
       { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: "3" }
@@ -54,6 +57,7 @@ export const crews: Crew[] = [
     dailyRate: 170,
     currency: 'EUR',
     totalIncome: 7650,
+    discount: 0,
     certificates: [
       { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "4" },
       { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: "4" }
@@ -69,6 +73,7 @@ export const crews: Crew[] = [
     dailyRate: 140,
     currency: 'USD',
     totalIncome: 4200,
+    discount: 0,
     certificates: [
       { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "5" },
       { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: "5" }

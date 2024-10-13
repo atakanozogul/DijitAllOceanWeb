@@ -41,10 +41,21 @@
     <td mat-cell *matCellDef="let crew"> {{ crew.currency }} </td>
   </ng-container>
 
+  <!-- Discount Column -->
+<ng-container matColumnDef="discount">
+  <th mat-header-cell *matHeaderCellDef> {{ 'discount' | translate }} </th>
+  <td mat-cell *matCellDef="let crew">
+    <mat-form-field appearance="fill" class="narrow-input">
+      <mat-label>{{ 'discount' | translate }}</mat-label>
+      <input matInput type="number" [(ngModel)]="crew.discount" (ngModelChange)="applyDiscount()" min="0" max="100">
+    </mat-form-field>
+  </td>
+</ng-container>
+
   <!-- Total Income Column -->
   <ng-container matColumnDef="totalIncome">
     <th mat-header-cell *matHeaderCellDef> {{ 'total_income' | translate }} </th>
-    <td mat-cell *matCellDef="let crew"> {{ crew.totalIncome }} </td>
+    <td mat-cell *matCellDef="let crew"> {{ crew.totalIncome | currency: crew.currency }} </td>
   </ng-container>
 
   <!-- Certificates Column -->
@@ -76,8 +87,8 @@
 </table>
 
 <div class="total-income">
-  <p> {{ 'total_income' | translate }} (USD): {{ getTotalIncomeByCurrency('USD') }}</p>
-  <p> {{ 'total_income' | translate }} (EUR): {{ getTotalIncomeByCurrency('EUR') }}</p>
+  <p> {{ 'total_income' | translate }} (USD): {{ getTotalIncomeByCurrency('USD') | currency:'USD' }}</p>
+  <p> {{ 'total_income' | translate }} (EUR): {{ getTotalIncomeByCurrency('EUR') | currency:'EUR' }}</p>
 </div>
 
 <button mat-raised-button color="primary" (click)="openAddCrewModal()">Add Crew</button>

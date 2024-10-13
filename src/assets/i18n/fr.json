@@ -19,5 +19,6 @@
     "issue_date": "Date de délivrance",
     "expiry_date": "Date d'expiration",
     "crew_list": "Liste d'équipage",
-    "crew_info": "Informations sur l'équipage"
+    "crew_info": "Informations sur l'équipage",
+    "discount": "Remise"
 }

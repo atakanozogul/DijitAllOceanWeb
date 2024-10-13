@@ -10,5 +10,6 @@ export interface Crew {
   dailyRate: number;
   currency: string;
   totalIncome: number;
+  discount?: number;
   certificates: CrewCertificate[];
 }

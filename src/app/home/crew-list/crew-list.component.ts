@@ -17,7 +17,7 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
 })
 export class CrewListComponent implements OnInit {
   crews: Crew[] = [];
-  displayedColumns: string[] = ['firstName', 'lastName', 'nationality', 'title', 'daysOnBoard', 'dailyRate', 'currency', 'totalIncome', 'certificates', 'actions'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'nationality', 'title', 'daysOnBoard', 'dailyRate', 'currency', 'discount', 'totalIncome', 'certificates', 'actions'];
   dataSource = new MatTableDataSource<Crew>();
 
   constructor(
@@ -28,8 +28,7 @@ export class CrewListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.crews = this.crewDataService.getCrews();
-    this.dataSource.data = this.crews;
+    this.loadCrewData();
   }
 
   openEditDialog(crew: Crew): void {
@@ -74,8 +73,14 @@ export class CrewListComponent implements OnInit {
 
   loadCrewData(): void {
     this.crews = this.crewDataService.getCrews();
+    this.applyDiscount();
+    this.dataSource.data = this.crews;
+  }
+
+  applyDiscount(): void {
     this.crews.forEach(crew => {
-      crew.totalIncome = crew.daysOnBoard * crew.dailyRate;
+      const discount = crew.discount ? crew.discount / 100 : 0;
+      crew.totalIncome = crew.daysOnBoard * crew.dailyRate * (1 - discount);
     });
     this.dataSource.data = this.crews;
   }

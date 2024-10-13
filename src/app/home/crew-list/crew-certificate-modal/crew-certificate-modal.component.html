@@ -1,11 +1,11 @@
 <!-- crew-certificates.component.html -->
 <h1 mat-dialog-title>{{ 'certificates' | translate }}</h1>
-<div mat-dialog-content>
-  <ul>
-    <li *ngFor="let certificate of data.certificates">
-      <strong>{{ certificate.name }}</strong> - {{ certificate.desc }}<br>
-      {{ 'issue_date' | translate }}: {{ certificate.issueDate | date }}<br>
-      {{ 'expiry_date' | translate }}: {{ certificate.expiryDate | date }}
+<div mat-dialog-content class="certificate-content">
+  <ul class="certificate-list">
+    <li *ngFor="let certificate of data.certificates" class="certificate-item">
+      <strong class="certificate-name">{{ certificate.name }}</strong> - <span class="certificate-desc">{{ certificate.desc }}</span><br>
+      <span class="certificate-date">{{ 'issue_date' | translate }}: {{ certificate.issueDate | date }}</span><br>
+      <span class="certificate-date">{{ 'expiry_date' | translate }}: {{ certificate.expiryDate | date }}</span>
     </li>
   </ul>
 </div>

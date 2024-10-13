@@ -1,0 +1,53 @@
+.certificate-content {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .certificate-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .certificate-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .certificate-name {
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .certificate-desc {
+    font-style: italic;
+    color: #666;
+  }
+  
+  .certificate-date {
+    font-size: 0.9em;
+    color: #999;
+  }
+  
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0;
+  }
+  
+  button[mat-button] {
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    padding: 5px 15px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button[mat-button]:hover {
+    background-color: #0056b3;
+  }

@@ -1,22 +1,21 @@
-<!-- certificates.component.html -->
 <div class="container">
-  <h1 mat-title>Certificates</h1>
+  <h1 mat-title>{{ 'certificates' | translate }}</h1>
   <mat-table [dataSource]="certificates" class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> {{ 'name' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let certificate"> {{ certificate.name }} </mat-cell>
     </ng-container>
 
     <!-- Description Column -->
     <ng-container matColumnDef="desc">
-      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> {{ 'description' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let certificate"> {{ certificate.desc }} </mat-cell>
     </ng-container>
 
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> {{ 'actions' | translate }} </mat-header-cell>
       <mat-cell *matCellDef="let certificate">
         <button mat-icon-button color="warn" (click)="deleteCertificate(certificate.id)">
           <mat-icon>delete</mat-icon>
@@ -29,27 +28,27 @@
   </mat-table>
 
   <button mat-raised-button color="primary" (click)="toggleAddForm()">
-    {{ showAddForm ? 'Cancel' : 'Add New Certificate' }}
+    {{ showAddForm ? ('cancel' | translate) : ('add_new_certificate' | translate) }}
   </button>
 
   <div class="add-certificate-form" *ngIf="showAddForm">
-    <h2 mat-subheader>Add New Certificate</h2>
+    <h2 mat-subheader>{{ 'add_new_certificate' | translate }}</h2>
     <form [formGroup]="certificateForm">
       <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" placeholder="Name" required>
+        <mat-label>{{ 'name' | translate }}</mat-label>
+        <input matInput formControlName="name" placeholder="{{ 'name' | translate }}" required>
         <mat-error *ngIf="certificateForm.get('name')?.hasError('required')">
-          Name is required
+          {{ 'name_required' | translate }}
         </mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="desc" placeholder="Description" required>
+        <mat-label>{{ 'description' | translate }}</mat-label>
+        <input matInput formControlName="desc" placeholder="{{ 'description' | translate }}" required>
         <mat-error *ngIf="certificateForm.get('desc')?.hasError('required')">
-          Description is required
+          {{ 'description_required' | translate }}
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="addCertificate()" [disabled]="certificateForm.invalid">Add</button>
+      <button mat-raised-button color="primary" (click)="addCertificate()" [disabled]="certificateForm.invalid">{{ 'add' | translate }}</button>
     </form>
   </div>
 </div>

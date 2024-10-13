@@ -24,7 +24,7 @@ export const crews: Crew[] = [
     title: 'First Officer',
     daysOnBoard: 80,
     dailyRate: 400,
-    currency: 'GBP',
+    currency: 'EUR',
     totalIncome: 32000,
     discount: 0,
     certificates: [

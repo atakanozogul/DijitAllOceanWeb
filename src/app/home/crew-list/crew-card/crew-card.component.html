@@ -1,24 +1,26 @@
-<mat-tab-group>
-    <mat-tab label="{{ 'crew_info' | translate }}">
+<div class="crew-card-container">
+  <mat-tab-group>
+    <mat-tab label="{{ 'crew_info' | translate }}" class="crew-info-tab">
       <div class="crew-card">
         <h2>{{ crew.firstName }} {{ crew.lastName }}</h2>
-        <p>{{ 'title' | translate }}: {{ crew.title }}</p>
-        <p>{{ 'nationality' | translate }}: {{ crew.nationality }}</p>
-        <p>{{ 'days_on_board' | translate }}: {{ crew.daysOnBoard }}</p>
-        <p>{{ 'daily_rate' | translate }}: {{ crew.dailyRate }}</p>
-        <p>{{ 'currency' | translate }}: {{ crew.currency }}</p>
-        <p>{{ 'total_income' | translate }}: {{ crew.totalIncome }}</p>
+        <p><strong>{{ 'title' | translate }}:</strong> {{ crew.title }}</p>
+        <p><strong>{{ 'nationality' | translate }}:</strong> {{ crew.nationality }}</p>
+        <p><strong>{{ 'days_on_board' | translate }}:</strong> {{ crew.daysOnBoard }}</p>
+        <p><strong>{{ 'daily_rate' | translate }}:</strong> {{ crew.dailyRate | currency: crew.currency }}</p>
+        <p><strong>{{ 'currency' | translate }}:</strong> {{ crew.currency }}</p>
+        <p><strong>{{ 'total_income' | translate }}:</strong> {{ crew.totalIncome | currency: crew.currency }}</p>
       </div>
     </mat-tab>
-    <mat-tab label="{{ 'certificates' | translate }}">
+    <mat-tab label="{{ 'certificates' | translate }}" class="certificates-tab">
       <div class="certificates">
-        <ul>
-          <li *ngFor="let certificate of crewCertificates">
-            <strong>{{ certificate.name }}</strong> - {{ certificate.desc }}<br>
-            {{ 'issue_date' | translate }}: {{ certificate.issueDate | date }}<br>
-            {{ 'expiry_date' | translate }}: {{ certificate.expiryDate | date }}
+        <ul class="certificate-list">
+          <li *ngFor="let certificate of crewCertificates" class="certificate-item">
+            <strong class="certificate-name">{{ certificate.name }}</strong> - <span class="certificate-desc">{{ certificate.desc }}</span><br>
+            <span class="certificate-date">{{ 'issue_date' | translate }}: {{ certificate.issueDate | date }}</span><br>
+            <span class="certificate-date">{{ 'expiry_date' | translate }}: {{ certificate.expiryDate | date }}</span>
           </li>
         </ul>
       </div>
     </mat-tab>
   </mat-tab-group>
+</div>

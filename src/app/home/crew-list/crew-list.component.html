@@ -55,7 +55,7 @@
   <!-- Total Income Column -->
   <ng-container matColumnDef="totalIncome">
     <th mat-header-cell *matHeaderCellDef> {{ 'total_income' | translate }} </th>
-    <td mat-cell *matCellDef="let crew"> {{ crew.totalIncome | currency: crew.currency }} </td>
+    <td mat-cell *matCellDef="let crew" class="total-income-cell"> {{ crew.totalIncome | currency: crew.currency }} </td>
   </ng-container>
 
   <!-- Certificates Column -->
@@ -71,13 +71,13 @@
     <th mat-header-cell *matHeaderCellDef> {{ 'actions' | translate }} </th>
     <td mat-cell *matCellDef="let crew">
       <button mat-icon-button class="edit-button" (click)="openEditDialog(crew)">
-        <mat-icon>edit</mat-icon>
+        <mat-icon class="edit-icon">edit</mat-icon>
       </button>
       <button mat-icon-button class="delete-button" (click)="deleteCrew(crew.id)">
-        <mat-icon>delete</mat-icon>
+        <mat-icon class="delete-icon">delete</mat-icon>
       </button>
       <button mat-icon-button class="crew-card-button" (click)="navigateToCrewCard(crew)">
-        <mat-icon>person</mat-icon>
+        <mat-icon class="crew-card-icon">person</mat-icon>
       </button>
     </td>
   </ng-container>
@@ -87,8 +87,20 @@
 </table>
 
 <div class="total-income">
-  <p> {{ 'total_income' | translate }} (USD): {{ getTotalIncomeByCurrency('USD') | currency:'USD' }}</p>
-  <p> {{ 'total_income' | translate }} (EUR): {{ getTotalIncomeByCurrency('EUR') | currency:'EUR' }}</p>
+  <p>{{ 'total_income' | translate }} (USD):</p>
+  <span>
+    {{ getTotalIncomeByCurrency('USD') | currency:'USD' }}
+  </span>
 </div>
 
-<button mat-raised-button color="primary" (click)="openAddCrewModal()">Add Crew</button>
+<div class="total-income">
+  <p>{{ 'total_income' | translate }} (EUR):</p>
+  <span>
+    {{ getTotalIncomeByCurrency('EUR') | currency:'EUR' }}
+  </span>
+</div>
+
+<button mat-raised-button color="primary" class="add-crew-button" (click)="openAddCrewModal()">
+  <mat-icon>person_add</mat-icon>
+  {{ 'add_crew' | translate }}
+</button>

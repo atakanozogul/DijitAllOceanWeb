@@ -73,7 +73,11 @@ export class CrewListComponent implements OnInit {
   }
 
   loadCrewData(): void {
-    this.dataSource.data = this.crewDataService.getCrews();
+    this.crews = this.crewDataService.getCrews();
+    this.crews.forEach(crew => {
+      crew.totalIncome = crew.daysOnBoard * crew.dailyRate;
+    });
+    this.dataSource.data = this.crews;
   }
 
   openAddCrewModal(): void {

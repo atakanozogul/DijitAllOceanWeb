@@ -12,7 +12,7 @@ export const crews: Crew[] = [
     currency: 'USD',
     totalIncome: 50000,
     certificates: [
-      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: 1 }
+      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "1" }
     ]
   },
   {
@@ -26,7 +26,7 @@ export const crews: Crew[] = [
     currency: 'GBP',
     totalIncome: 32000,
     certificates: [
-      { certificateId: 2, issueDate: '2020-05-01', expiryDate: '2022-05-01', crewId: 2 }
+      { certificateId: 2, issueDate: '2020-05-01', expiryDate: '2022-05-01', crewId: "2" }
     ]
   },
   {
@@ -40,8 +40,8 @@ export const crews: Crew[] = [
     currency: 'USD',
     totalIncome: 9000,
     certificates: [
-      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: 3 },
-      { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: 3 }
+      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "3" },
+      { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: "3" }
     ]
   },
   {
@@ -55,8 +55,8 @@ export const crews: Crew[] = [
     currency: 'EUR',
     totalIncome: 7650,
     certificates: [
-      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: 4 },
-      { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: 4 }
+      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "4" },
+      { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: "4" }
     ]
   },
   {
@@ -70,8 +70,8 @@ export const crews: Crew[] = [
     currency: 'USD',
     totalIncome: 4200,
     certificates: [
-      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: 5 },
-      { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: 5 }
+      { certificateId: 1, issueDate: '2021-01-01', expiryDate: '2023-01-01', crewId: "5" },
+      { certificateId: 2, issueDate: '2021-02-01', expiryDate: '2023-02-01', crewId: "5" }
     ]
   }
 ];

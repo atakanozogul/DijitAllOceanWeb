@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Add New Crew</h1>
+<h1 mat-dialog-title>{{ isEditMode ? 'Edit Crew' : 'Add Crew' }}</h1>
 <div mat-dialog-content>
   <form [formGroup]="crewForm">
     <mat-form-field appearance="fill">
@@ -39,7 +39,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Days On Board</mat-label>
-      <input matInput type="number" formControlName="daysOnBoard" (input)="calculateTotalIncome()" min="0" required>
+      <input matInput type="number" formControlName="daysOnBoard" min="0" required>
       <mat-error *ngIf="crewForm.get('daysOnBoard')?.hasError('required')">
         Days On Board is required
       </mat-error>
@@ -49,7 +49,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Daily Rate</mat-label>
-      <input matInput type="number" formControlName="dailyRate" (input)="calculateTotalIncome()" min="0" required>
+      <input matInput type="number" formControlName="dailyRate" min="0" required>
       <mat-error *ngIf="crewForm.get('dailyRate')?.hasError('required')">
         Daily Rate is required
       </mat-error>
@@ -59,7 +59,7 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Currency</mat-label>
-      <mat-select formControlName="currency" (selectionChange)="calculateTotalIncome()" required>
+      <mat-select formControlName="currency" required>
         <mat-option *ngFor="let currency of currencies" [value]="currency">
           {{ currency }}
         </mat-option>
@@ -68,11 +68,56 @@
         Currency is required
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Total Income</mat-label>
-      <input matInput type="number" formControlName="totalIncome" readonly>
-    </mat-form-field>
   </form>
+
+  <h2 mat-subheader>Add or Edit Certificate</h2>
+  <form [formGroup]="certificateForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Certificate</mat-label>
+      <mat-select formControlName="certificateId" required>
+        <mat-option *ngFor="let certificate of certificates" [value]="certificate.id">
+          {{ certificate.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="certificateForm.get('certificateId')?.hasError('required')">
+        Certificate is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Issue Date</mat-label>
+      <input matInput [matDatepicker]="issueDatePicker" formControlName="issueDate" required>
+      <mat-datepicker-toggle matSuffix [for]="issueDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #issueDatePicker></mat-datepicker>
+      <mat-error *ngIf="certificateForm.get('issueDate')?.hasError('required')">
+        Issue Date is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Expiry Date</mat-label>
+      <input matInput [matDatepicker]="expiryDatePicker" formControlName="expiryDate" required>
+      <mat-datepicker-toggle matSuffix [for]="expiryDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #expiryDatePicker></mat-datepicker>
+      <mat-error *ngIf="certificateForm.get('expiryDate')?.hasError('required')">
+        Expiry Date is required
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addOrUpdateCertificate()" [disabled]="certificateForm.invalid">
+      {{ editingCertificateIndex !== null ? 'Update Certificate' : 'Add Certificate' }}
+    </button>
+  </form>
+
+  <h2 mat-subheader>Certificates</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let cert of tempCertificates; let i = index">
+      {{ cert.certificateId }} - {{ cert.issueDate }} - {{ cert.expiryDate }}
+      <button mat-icon-button color="primary" (click)="editCertificate(i)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" (click)="removeCertificate(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>

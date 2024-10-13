@@ -26,7 +26,8 @@ import { CertificatesComponent } from './home/certificates/certificates.componen
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { CrewCardComponent } from './home/crew-list/crew-card/crew-card.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,7 +41,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     SidebarComponent,
     CrewListComponent,
     CrewCertificateComponent,
-    CertificatesComponent
+    CertificatesComponent,
+    CrewCardComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule,
     FormsModule,
     TranslateModule.forRoot({
       loader: {

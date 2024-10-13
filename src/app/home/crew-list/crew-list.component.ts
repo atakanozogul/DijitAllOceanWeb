@@ -4,9 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CrewDataService } from '../../services/crew-data.service';
 import { CertificateDataService } from 'src/app/services/certificate-data.service';
 import { Crew } from '../../models/crew.model';
-import { Certificate } from '../../models/certificate.model';
 import { CrewCertificateComponent } from './crew-certificate-modal/crew-certificate-modal.component';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crew-list',
@@ -21,7 +20,9 @@ export class CrewListComponent implements OnInit {
   constructor(
     private crewDataService: CrewDataService, 
     private certificateDataService: CertificateDataService, 
-    public dialog: MatDialog) {}
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.crews = this.crewDataService.getCrews();
@@ -58,5 +59,9 @@ export class CrewListComponent implements OnInit {
     return this.crews
       .filter(crew => crew.currency === currency)
       .reduce((acc, crew) => acc + crew.totalIncome, 0);
+  }
+
+  navigateToCrewCard(crew: Crew): void {
+    this.router.navigate(['/home/crew-card'], { state: { crew } });
   }
 }

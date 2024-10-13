@@ -1,41 +1,103 @@
-/* certificates.component.scss */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .container {
-    padding: 16px;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
-  }
-  
-  mat-list {
-    margin-bottom: 16px;
-  }
-  
-  mat-list-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    overflow: visible;
-    background-color: white;
-    border-radius: 10px;
-    margin: 5px;
-  }
-  
-  .certificate-info {
-    flex-grow: 1;
-    padding-right: 16px;
-  }
-  
-  .add-certificate-form {
-    margin-top: 16px;
-  }
-  
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 16px;
-  }
-  
-  button[mat-raised-button] {
-    display: block;
-    width: 100%;
-  }
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1[mat-title] {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.mat-table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 16px;
+}
+
+.mat-header-cell {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.mat-cell {
+  background-color: white;
+}
+
+.add-certificate-form {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-certificate-form h2[mat-subheader] {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button[mat-raised-button] {
+  display: block;
+  margin: 0 auto;
+}
+
+.add-certificate-button {
+  background-color: #2980b9;
+  border-color: #2980b9;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.add-certificate-button:hover {
+  background-color: #1abc9c;
+  border-color: #16a085;
+}
+
+.add-certificate-button:disabled {
+  background-color: #9c9c9c;
+}
+
+.toggle-add-form-button {
+  background-color: #2980b9;
+  border-color: #2980b9;
+  color: white;
+  font-weight: bold;
+  padding-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  margin-bottom: 20px;
+}
+
+.toggle-add-form-button:hover {
+  background-color: #1abc9c;
+  border-color: #16a085;
+}

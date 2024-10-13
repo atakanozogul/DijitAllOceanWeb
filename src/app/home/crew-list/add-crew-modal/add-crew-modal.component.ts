@@ -42,6 +42,7 @@ export class AddCrewModalComponent implements OnInit {
       daysOnBoard: [data?.daysOnBoard || 0, [Validators.required, Validators.min(0)]],
       dailyRate: [data?.dailyRate || 0, [Validators.required, Validators.min(0)]],
       currency: [data?.currency || '', Validators.required],
+      discount: 0,
       totalIncome: [{ value: data?.totalIncome || 0, disabled: true }],
       certificates: [[]]
     });
@@ -111,6 +112,11 @@ export class AddCrewModalComponent implements OnInit {
     }
   }
 
+  getCertificateName(certificateId: number): string {
+    const certificate = this.certificateDataService.getCertificateById(certificateId);
+    return certificate ? certificate.name : '';
+  }
+
   editCertificate(index: number): void {
     const certificate = this.tempCertificates[index];
     this.certificateForm.patchValue({
@@ -120,7 +126,6 @@ export class AddCrewModalComponent implements OnInit {
     });
     this.editingCertificateIndex = index;
   }
-
 
   removeCertificate(index: number): void {
     this.tempCertificates.splice(index, 1);

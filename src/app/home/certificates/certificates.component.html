@@ -27,7 +27,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <button mat-raised-button color="primary" (click)="toggleAddForm()">
+  <button mat-raised-button color="primary" class="toggle-add-form-button" (click)="toggleAddForm()">
     {{ showAddForm ? ('cancel' | translate) : ('add_new_certificate' | translate) }}
   </button>
 
@@ -48,7 +48,7 @@
           {{ 'description_required' | translate }}
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="addCertificate()" [disabled]="certificateForm.invalid">{{ 'add' | translate }}</button>
+      <button mat-raised-button color="primary" class="add-certificate-button" (click)="addCertificate()" [disabled]="certificateForm.invalid">{{ 'add' | translate }}</button>
     </form>
   </div>
 </div>

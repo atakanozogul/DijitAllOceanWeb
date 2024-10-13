@@ -50,5 +50,6 @@
     "add_new_certificate": "Ajouter un nouveau certificat",
     "name_required": "Nom Requis",
     "description_required": "Description Requis",
-    "add": "Ajouter"
+    "add": "Ajouter",
+    "crew_details": "Détails de l'équipage"
 }

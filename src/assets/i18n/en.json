@@ -50,5 +50,6 @@
     "add_new_certificate": "Add New Certificate",
     "name_required": "Name is required",
     "description_required": "Description is required",
-    "add": "Add"
+    "add": "Add",
+    "crew_details": "Crew Details"
 }

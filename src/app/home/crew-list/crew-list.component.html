@@ -79,3 +79,5 @@
     <p> {{ 'total_income' | translate }} (USD): {{ getTotalIncomeByCurrency('USD') }}</p>
     <p> {{ 'total_income' | translate }} (EUR): {{ getTotalIncomeByCurrency('EUR') }}</p>
   </div>
+
+  <button mat-raised-button color="primary" (click)="openAddCrewModal()">Add Crew</button>

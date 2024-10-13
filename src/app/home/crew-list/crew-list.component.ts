@@ -6,6 +6,8 @@ import { CertificateDataService } from 'src/app/services/certificate-data.servic
 import { Crew } from '../../models/crew.model';
 import { CrewCertificateComponent } from './crew-certificate-modal/crew-certificate-modal.component';
 import { Router } from '@angular/router';
+import { AddCrewModalComponent } from './add-crew-modal/add-crew-modal.component';
+
 
 @Component({
   selector: 'app-crew-list',
@@ -52,6 +54,22 @@ export class CrewListComponent implements OnInit {
     this.dialog.open(CrewCertificateComponent, {
       width: '400px',
       data: { certificates: detailedCertificates }
+    });
+  }
+
+  loadCrewData(): void {
+    this.dataSource.data = this.crewDataService.getCrews();
+  }
+
+  openAddCrewModal(): void {
+    const dialogRef = this.dialog.open(AddCrewModalComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCrewData();
+      }
     });
   }
 

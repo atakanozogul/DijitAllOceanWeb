@@ -28,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CrewCardComponent } from './home/crew-list/crew-card/crew-card.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { AddCrewModalComponent } from './home/crew-list/add-crew-modal/add-crew-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,7 +43,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CrewListComponent,
     CrewCertificateComponent,
     CertificatesComponent,
-    CrewCardComponent
+    CrewCardComponent,
+    AddCrewModalComponent
   ],
   imports: [
     BrowserModule,

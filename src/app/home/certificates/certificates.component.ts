@@ -3,7 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CertificateDataService } from '../../services/certificate-data.service';
 import { Certificate } from '../../models/certificate.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { ConfirmDeleteComponent } from '../crew-list/confirm-delete/confirm-delete.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-certificates',
@@ -16,7 +17,11 @@ export class CertificatesComponent implements OnInit {
   showAddForm: boolean = false;
   certificateForm: FormGroup;
 
-  constructor(private certificateService: CertificateDataService, private fb: FormBuilder) {
+  constructor(
+    private certificateService: CertificateDataService, 
+    private fb: FormBuilder,
+    private dialog: MatDialog
+  ) {
     this.certificateForm = this.fb.group({
       name: ['', Validators.required],
       desc: ['', Validators.required]
@@ -32,8 +37,14 @@ export class CertificatesComponent implements OnInit {
   }
 
   deleteCertificate(id: number): void {
-    this.certificateService.deleteCertificate(id);
-    this.loadCertificates();
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.certificateService.deleteCertificate(id);
+        this.loadCertificates();
+      }
+    });
   }
 
   addCertificate(): void {

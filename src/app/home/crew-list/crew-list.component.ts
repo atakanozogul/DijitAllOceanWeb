@@ -7,6 +7,7 @@ import { Crew } from '../../models/crew.model';
 import { CrewCertificateComponent } from './crew-certificate-modal/crew-certificate-modal.component';
 import { Router } from '@angular/router';
 import { AddCrewModalComponent } from './add-crew-modal/add-crew-modal.component';
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 
 
 @Component({
@@ -36,9 +37,14 @@ export class CrewListComponent implements OnInit {
   }
 
   deleteCrew(id: string): void {
-    this.crewDataService.deleteCrew(id);
-    this.crews = this.crewDataService.getCrews();
-    this.dataSource.data = this.crews;
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.crewDataService.deleteCrew(id);
+        this.loadCrewData();
+      }
+    });
   }
 
   openCertificatesDialog(certificates: any): void {

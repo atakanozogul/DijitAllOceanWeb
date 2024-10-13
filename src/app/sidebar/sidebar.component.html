@@ -4,17 +4,26 @@
       <mat-nav-list>
         <mat-list-item>
           <button mat-button routerLink="/home">
-            <span>{{ 'home' | translate }}</span>
+            <span>
+              <mat-icon>home</mat-icon>
+              {{ 'home' | translate }}
+            </span>
           </button>
         </mat-list-item>
         <mat-list-item>
           <button mat-button routerLink="/home/crew-list">
-            <span>{{ 'crew_list' | translate }}</span>
+            <span>
+              <mat-icon>groups</mat-icon>
+              {{ 'crew_list' | translate }}
+            </span>
           </button>
         </mat-list-item>
         <mat-list-item>
           <button mat-button routerLink="/home/certificates">
-            <span>{{ 'certificates' | translate }}</span>
+            <span>
+              <mat-icon>card_membership</mat-icon>
+              {{ 'certificates' | translate }}
+            </span>
           </button>
         </mat-list-item>
       </mat-nav-list>

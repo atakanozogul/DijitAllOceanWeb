@@ -2,7 +2,7 @@ import { Crew } from "../models/crew.model";
 
 export const crews: Crew[] = [
   {
-    id: 1,
+    id: "1",
     firstName: 'John',
     lastName: 'Doe',
     nationality: 'American',
@@ -16,7 +16,7 @@ export const crews: Crew[] = [
     ]
   },
   {
-    id: 2,
+    id: "2",
     firstName: 'Jane',
     lastName: 'Smith',
     nationality: 'British',
@@ -30,7 +30,7 @@ export const crews: Crew[] = [
     ]
   },
   {
-    id: 3,
+    id: "3",
     firstName: 'Alice',
     lastName: 'Johnson',
     nationality: 'Canadian',
@@ -45,7 +45,7 @@ export const crews: Crew[] = [
     ]
   },
   {
-    id: 4,
+    id: "4",
     firstName: 'Bob',
     lastName: 'Brown',
     nationality: 'Australian',
@@ -60,7 +60,7 @@ export const crews: Crew[] = [
     ]
   },
   {
-    id: 5,
+    id: "5",
     firstName: 'Charlie',
     lastName: 'Davis',
     nationality: 'New Zealander',

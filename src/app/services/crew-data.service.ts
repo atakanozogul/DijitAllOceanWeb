@@ -27,11 +27,11 @@ export class CrewDataService {
     }
   }
 
-  deleteCrew(id: number): void {
+  deleteCrew(id: string): void {
     this.crews = this.crews.filter(crew => crew.id !== id);
   }
 
-  addCertificate(crewId: number, certificate: CrewCertificate): void {
+  addCertificate(crewId: string, certificate: CrewCertificate): void {
     const crew = this.crews.find(crew => crew.id === crewId);
     if (crew) {
       crew.certificates.push(certificate);

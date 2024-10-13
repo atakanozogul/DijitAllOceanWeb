@@ -35,7 +35,7 @@ export class CrewListComponent implements OnInit {
     // Edit dialog açma işlemi
   }
 
-  deleteCrew(id: number): void {
+  deleteCrew(id: string): void {
     this.crewDataService.deleteCrew(id);
     this.crews = this.crewDataService.getCrews();
     this.dataSource.data = this.crews;

@@ -29,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CrewCardComponent } from './home/crew-list/crew-card/crew-card.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AddCrewModalComponent } from './home/crew-list/add-crew-modal/add-crew-modal.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,6 +65,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
+    MatSelectModule,
+    MatOptionModule,
     FormsModule,
     TranslateModule.forRoot({
       loader: {

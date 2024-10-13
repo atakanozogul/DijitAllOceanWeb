@@ -1,7 +1,7 @@
 import { CrewCertificate } from './crew-certificate.model';
 
 export interface Crew {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   nationality: string;

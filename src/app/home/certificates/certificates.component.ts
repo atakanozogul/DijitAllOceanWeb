@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { CertificateDataService } from '../../services/certificate-data.service';
 import { Certificate } from '../../models/certificate.model';
 
@@ -7,25 +8,35 @@ import { Certificate } from '../../models/certificate.model';
   templateUrl: './certificates.component.html',
   styleUrls: ['./certificates.component.scss']
 })
-export class CertificatesComponent {
-  certificates: Certificate[] = [];
-  newCertificate: { name: string, desc: string } = { name: '', desc: '' };
+export class CertificatesComponent implements OnInit {
+  certificates!: MatTableDataSource<Certificate>;
   displayedColumns: string[] = ['name', 'desc', 'actions'];
+  newCertificate: Certificate = { id: 0, name: '', desc: '' };
+  showAddForm: boolean = false;
 
-  constructor(private certificateService: CertificateDataService) {
-    this.certificates = this.certificateService.getCertificates();
+  constructor(private certificateService: CertificateDataService) {}
+
+  ngOnInit(): void {
+    this.loadCertificates();
   }
 
-  addCertificate() {
-    if (this.newCertificate.name && this.newCertificate.desc) {
-      this.certificateService.addNewCertificate(this.newCertificate);
-      this.newCertificate = { name: '', desc: '' };
-      this.certificates = this.certificateService.getCertificates();
-    }
+  loadCertificates(): void {
+    this.certificates = new MatTableDataSource(this.certificateService.getCertificates());
   }
 
-  deleteCertificate(id: number) {
+  deleteCertificate(id: number): void {
     this.certificateService.deleteCertificate(id);
-    this.certificates = this.certificateService.getCertificates();
+    this.loadCertificates();
+  }
+
+  addCertificate(): void {
+    this.certificateService.addNewCertificate(this.newCertificate);
+    this.newCertificate = { id: 0, name: '', desc: '' };
+    this.loadCertificates();
+    this.showAddForm = false;
+  }
+
+  toggleAddForm(): void {
+    this.showAddForm = !this.showAddForm;
   }
 }

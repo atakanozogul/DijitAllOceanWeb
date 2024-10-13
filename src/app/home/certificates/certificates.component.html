@@ -1,25 +1,47 @@
 <!-- certificates.component.html -->
 <div class="container">
-    <h1 mat-title>Certificates</h1>
-    <mat-list>
-      <mat-list-item *ngFor="let certificate of certificates">
-        {{ certificate.name }} - {{ certificate.desc }}
+  <h1 mat-title>Certificates</h1>
+  <mat-table [dataSource]="certificates" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let certificate"> {{ certificate.name }} </mat-cell>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="desc">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let certificate"> {{ certificate.desc }} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let certificate">
         <button mat-icon-button color="warn" (click)="deleteCertificate(certificate.id)">
           <mat-icon>delete</mat-icon>
         </button>
-      </mat-list-item>
-    </mat-list>
-    
-    <div class="add-certificate-form">
-      <h2 mat-subheader>Add New Certificate</h2>
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="newCertificate.name" placeholder="Name">
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Description</mat-label>
-        <input matInput [(ngModel)]="newCertificate.desc" placeholder="Description">
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="addCertificate()">Add</button>
-    </div>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <button mat-raised-button color="primary" (click)="toggleAddForm()">
+    {{ showAddForm ? 'Cancel' : 'Add New Certificate' }}
+  </button>
+
+  <div class="add-certificate-form" *ngIf="showAddForm">
+    <h2 mat-subheader>Add New Certificate</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="newCertificate.name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput [(ngModel)]="newCertificate.desc" placeholder="Description">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addCertificate()">Add</button>
   </div>
+</div>

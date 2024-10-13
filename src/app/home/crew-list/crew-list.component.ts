@@ -33,7 +33,16 @@ export class CrewListComponent implements OnInit {
   }
 
   openEditDialog(crew: Crew): void {
-    // Edit dialog açma işlemi
+    const dialogRef = this.dialog.open(AddCrewModalComponent, {
+      width: '400px',
+      data: crew
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCrewData();
+      }
+    });
   }
 
   deleteCrew(id: string): void {

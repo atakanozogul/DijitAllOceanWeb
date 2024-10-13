@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CrewDataService } from '../../../services/crew-data.service';
 import { Crew } from '../../../models/crew.model';
+import { CrewDataService } from '../../../services/crew-data.service';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class AddCrewModalComponent implements OnInit {
   crewForm: FormGroup;
+  isEditMode: boolean = false;
 
   nationalities: string[] = ['American', 'British', 'Canadian', 'Dutch', 'French'];
   titles: string[] = ['Captain', 'First Officer', 'Engineer', 'Deckhand', 'Steward'];
@@ -19,18 +20,20 @@ export class AddCrewModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddCrewModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Crew | null,
     private fb: FormBuilder,
     private crewDataService: CrewDataService
   ) {
+    this.isEditMode = !!data;
     this.crewForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      nationality: ['', Validators.required],
-      title: ['', Validators.required],
-      daysOnBoard: [0, [Validators.required, Validators.min(0)]],
-      dailyRate: [0, [Validators.required, Validators.min(0)]],
-      currency: ['', Validators.required],
-      totalIncome: [{ value: 0, disabled: true }]
+      firstName: [data?.firstName || '', Validators.required],
+      lastName: [data?.lastName || '', Validators.required],
+      nationality: [data?.nationality || '', Validators.required],
+      title: [data?.title || '', Validators.required],
+      daysOnBoard: [data?.daysOnBoard || 0, [Validators.required, Validators.min(0)]],
+      dailyRate: [data?.dailyRate || 0, [Validators.required, Validators.min(0)]],
+      currency: [data?.currency || '', Validators.required],
+      totalIncome: [{ value: data?.totalIncome || 0, disabled: true }]
     });
   }
 
@@ -43,11 +46,18 @@ export class AddCrewModalComponent implements OnInit {
   onSave(): void {
     if (this.crewForm.valid) {
       const crew: Crew = {
+        ...this.data,
         ...this.crewForm.getRawValue(),
-        id: uuidv4(),
-        certificates: []
+        id: this.data?.id || uuidv4(),
+        certificates: this.data?.certificates || []
       };
-      this.crewDataService.addCrew(crew);
+
+      if (this.isEditMode) {
+        this.crewDataService.updateCrew(crew);
+      } else {
+        this.crewDataService.addCrew(crew);
+      }
+
       this.dialogRef.close(true);
     }
   }
@@ -57,7 +67,7 @@ export class AddCrewModalComponent implements OnInit {
     const dailyRate = this.crewForm.get('dailyRate')!.value;
     if (daysOnBoard >= 0 && dailyRate >= 0) {
       const totalIncome = daysOnBoard * dailyRate;
-      this.crewForm.get('totalIncome')?.setValue(totalIncome);
+      this.crewForm.get('totalIncome')!.setValue(totalIncome);
     }
   }
 }

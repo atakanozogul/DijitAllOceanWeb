@@ -27,8 +27,8 @@ table {
   }
 
   .add-crew-button {
-    background-color: #2980b9;
-    border-color: #2980b9;
+    background-color: rgb(0, 129, 0);
+    border-color: rgb(0, 129, 0);
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -42,8 +42,8 @@ table {
 
   .certificates-button {
     width: 180px;
-    background-color: #2980b9;
-    border-color: #2980b9;
+    background-color: #300066;
+    border-color: #6c29b9;
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -51,20 +51,20 @@ table {
   }
 
   .certificates-button:hover {
-    background-color: #1abc9c;
-    border-color: #16a085;
+    background-color: #924de0;
+    border-color: #924de0;
   }
 
   .edit-icon {
-    color: rgb(255, 196, 0);
+    color: rgb(214, 164, 0);
   }
   
   .delete-icon {
-    color: red;
+    color: rgb(211, 0, 0);
   }
   
   .crew-card-icon {
-    color: rgb(0, 140, 255);
+    color: rgb(0, 129, 0);
   }
 
   .mat-elevation-z8 {

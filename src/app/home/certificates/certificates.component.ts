@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { CertificateDataService } from '../../services/certificate-data.service';
 import { Certificate } from '../../models/certificate.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-certificates',
@@ -11,10 +13,15 @@ import { Certificate } from '../../models/certificate.model';
 export class CertificatesComponent implements OnInit {
   certificates!: MatTableDataSource<Certificate>;
   displayedColumns: string[] = ['name', 'desc', 'actions'];
-  newCertificate: Certificate = { id: 0, name: '', desc: '' };
   showAddForm: boolean = false;
+  certificateForm: FormGroup;
 
-  constructor(private certificateService: CertificateDataService) {}
+  constructor(private certificateService: CertificateDataService, private fb: FormBuilder) {
+    this.certificateForm = this.fb.group({
+      name: ['', Validators.required],
+      desc: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
     this.loadCertificates();
@@ -30,10 +37,13 @@ export class CertificatesComponent implements OnInit {
   }
 
   addCertificate(): void {
-    this.certificateService.addNewCertificate(this.newCertificate);
-    this.newCertificate = { id: 0, name: '', desc: '' };
-    this.loadCertificates();
-    this.showAddForm = false;
+    if (this.certificateForm.valid) {
+      const newCertificate: Certificate = this.certificateForm.value;
+      this.certificateService.addNewCertificate(newCertificate);
+      this.certificateForm.reset();
+      this.loadCertificates();
+      this.showAddForm = false;
+    }
   }
 
   toggleAddForm(): void {

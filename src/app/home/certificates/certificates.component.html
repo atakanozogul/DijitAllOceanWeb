@@ -34,14 +34,22 @@
 
   <div class="add-certificate-form" *ngIf="showAddForm">
     <h2 mat-subheader>Add New Certificate</h2>
-    <mat-form-field appearance="fill">
-      <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="newCertificate.name" placeholder="Name">
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
-      <input matInput [(ngModel)]="newCertificate.desc" placeholder="Description">
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="addCertificate()">Add</button>
+    <form [formGroup]="certificateForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Name" required>
+        <mat-error *ngIf="certificateForm.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="desc" placeholder="Description" required>
+        <mat-error *ngIf="certificateForm.get('desc')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addCertificate()" [disabled]="certificateForm.invalid">Add</button>
+    </form>
   </div>
 </div>

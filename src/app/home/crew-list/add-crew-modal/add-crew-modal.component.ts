@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CrewDataService } from '../../../services/crew-data.service';
 import { Crew } from '../../../models/crew.model';
 import { v4 as uuidv4 } from 'uuid';
@@ -10,18 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./add-crew-modal.component.scss']
 })
 export class AddCrewModalComponent implements OnInit {
-  crew: Crew = {
-    id: "0",
-    firstName: '',
-    lastName: '',
-    nationality: '',
-    title: '',
-    daysOnBoard: 0,
-    dailyRate: 0,
-    currency: '',
-    totalIncome: 0,
-    certificates: []
-  };
+  crewForm: FormGroup;
 
   nationalities: string[] = ['American', 'British', 'Canadian', 'Dutch', 'French'];
   titles: string[] = ['Captain', 'First Officer', 'Engineer', 'Deckhand', 'Steward'];
@@ -29,8 +19,20 @@ export class AddCrewModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddCrewModalComponent>,
+    private fb: FormBuilder,
     private crewDataService: CrewDataService
-  ) {}
+  ) {
+    this.crewForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      nationality: ['', Validators.required],
+      title: ['', Validators.required],
+      daysOnBoard: [0, [Validators.required, Validators.min(0)]],
+      dailyRate: [0, [Validators.required, Validators.min(0)]],
+      currency: ['', Validators.required],
+      totalIncome: [{ value: 0, disabled: true }]
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -39,15 +41,23 @@ export class AddCrewModalComponent implements OnInit {
   }
 
   onSave(): void {
-    this.crew.id = uuidv4();
-    this.crewDataService.addCrew(this.crew);
-    this.dialogRef.close(true);
+    if (this.crewForm.valid) {
+      const crew: Crew = {
+        ...this.crewForm.getRawValue(),
+        id: uuidv4(),
+        certificates: []
+      };
+      this.crewDataService.addCrew(crew);
+      this.dialogRef.close(true);
+    }
   }
 
   calculateTotalIncome(): void {
-    if (this.crew.daysOnBoard && this.crew.dailyRate) {
-      this.crew.totalIncome = this.crew.daysOnBoard * this.crew.dailyRate;
-      // Currency conversion logic can be added here if needed
+    const daysOnBoard = this.crewForm.get('daysOnBoard')!.value;
+    const dailyRate = this.crewForm.get('dailyRate')!.value;
+    if (daysOnBoard >= 0 && dailyRate >= 0) {
+      const totalIncome = daysOnBoard * dailyRate;
+      this.crewForm.get('totalIncome')?.setValue(totalIncome);
     }
   }
 }

@@ -8,6 +8,7 @@ import { CrewCertificateComponent } from './crew-certificate-modal/crew-certific
 import { Router } from '@angular/router';
 import { AddCrewModalComponent } from './add-crew-modal/add-crew-modal.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { CrewCertificate } from 'src/app/models/crew-certificate.model';
 
 
 @Component({
@@ -21,8 +22,7 @@ export class CrewListComponent implements OnInit {
   dataSource = new MatTableDataSource<Crew>();
 
   constructor(
-    private crewDataService: CrewDataService, 
-    private certificateDataService: CertificateDataService, 
+    private crewDataService: CrewDataService,
     public dialog: MatDialog,
     private router: Router
   ) {}
@@ -55,19 +55,10 @@ export class CrewListComponent implements OnInit {
     });
   }
 
-  openCertificatesDialog(certificates: any): void {
-    const detailedCertificates = certificates.map((cert: { certificateId: number; issueDate: any; expiryDate: any; }) => {
-      const certificateDetails = this.certificateDataService.getCertificateById(cert.certificateId);
-      return {
-        ...certificateDetails,
-        issueDate: cert.issueDate,
-        expiryDate: cert.expiryDate
-      };
-    });
-
+  openCertificatesDialog(certificates: CrewCertificate[]): void {
     this.dialog.open(CrewCertificateComponent, {
       width: '400px',
-      data: { certificates: detailedCertificates }
+      data: { certificates }
     });
   }
 

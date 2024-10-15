@@ -7,7 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { CertificateDataService } from '../../../services/certificate-data.service';
 import { CrewCertificate } from '../../../models/crew-certificate.model';
 import { Certificate } from '../../../models/certificate.model';
-
+import { CrewTitleDataService } from '../../../services/crew-title-data.service';
+import { CurrencyDataService } from '../../../services/currency-data.service';
+import { NationalityDataService } from '../../../services/nationality-data.service';
 
 @Component({
   selector: 'app-add-crew-modal',
@@ -22,16 +24,19 @@ export class AddCrewModalComponent implements OnInit {
   tempCertificates: CrewCertificate[] = [];
   editingCertificateIndex: number | null = null;
 
-  nationalities: string[] = ['American', 'British', 'Canadian', 'Dutch', 'French'];
-  titles: string[] = ['Captain', 'First Officer', 'Engineer', 'Deckhand', 'Steward'];
-  currencies: string[] = ['USD', 'EUR', 'GBP'];
+  nationalities: string[] = [];
+  titles: string[] = [];
+  currencies: string[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<AddCrewModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Crew | null,
     private fb: FormBuilder,
     private crewDataService: CrewDataService,
-    private certificateDataService: CertificateDataService
+    private certificateDataService: CertificateDataService,
+    private crewTitleDataService: CrewTitleDataService,
+    private currencyDataService: CurrencyDataService,
+    private nationalityDataService: NationalityDataService
   ) {
     this.isEditMode = !!data;
     this.crewForm = this.fb.group({
@@ -61,6 +66,9 @@ export class AddCrewModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.certificates = this.certificateDataService.getCertificates();
+    this.nationalities = this.nationalityDataService.getNationalities();
+    this.titles = this.crewTitleDataService.getCrewTitles();
+    this.currencies = this.currencyDataService.getCurrencies();
   }
 
   onCancel(): void {

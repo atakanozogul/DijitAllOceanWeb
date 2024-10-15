@@ -21,6 +21,9 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { CrewListComponent } from './home/crew-list/crew-list.component';
 import { CrewDataService } from './services/crew-data.service';
 import { CertificateDataService } from './services/certificate-data.service';
+import { CrewTitleDataService } from './services/crew-title-data.service';
+import { CurrencyDataService } from './services/currency-data.service';
+import { NationalityDataService } from './services/nationality-data.service';
 import { CrewCertificateComponent } from './home/crew-list/crew-certificate-modal/crew-certificate-modal.component';
 import { CertificatesComponent } from './home/certificates/certificates.component';
 import { FormsModule } from '@angular/forms';
@@ -84,7 +87,14 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       }
     })
   ],
-  providers: [CrewDataService,CertificateDataService,MatDialog],
+  providers: [
+    CrewDataService,
+    CertificateDataService,
+    CrewTitleDataService,
+    CurrencyDataService,
+    NationalityDataService,
+    MatDialog
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
